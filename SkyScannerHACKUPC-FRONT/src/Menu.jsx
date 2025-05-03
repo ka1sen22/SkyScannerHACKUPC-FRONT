@@ -7,7 +7,7 @@ function Menu() {
     <div className="menu">
       {/* Botón Create */}
       <button onClick={() => navigate('/party')} className="menu-button">
-        Create
+        Create Party
       </button>
 
       {/* Sección Join con logo arriba */}
@@ -18,7 +18,7 @@ function Menu() {
           className="skyscanner-logo"
         />
         <button onClick={() => navigate('/joinparty')} className="menu-button">
-          Join
+          Join Party
         </button>
       </div>
     </div>
