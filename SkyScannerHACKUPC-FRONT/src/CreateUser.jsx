@@ -81,13 +81,13 @@ function CreateUser() {
           />
         </div>
         <div className="form-group">
-          <label>Fechas:</label>
-          <input
-            type="text"
-            name="fechas"
-            value={formData.fechas}
-            onChange={handleChange}
-          />
+            <label>Fechas:</label>
+            <input
+              type="date"
+              name="fechas"
+              value={formData.fechas}
+              onChange={handleChange}
+            />
         </div>
         <button type="submit">Guardar</button>
       </form>
