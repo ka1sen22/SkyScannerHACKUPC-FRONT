@@ -2,17 +2,18 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function JoinParty() {
-  const navigate = useNavigate();
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleJoin = () => {
-    const storedPin = localStorage.getItem('partyPin');
+    const allParties = JSON.parse(localStorage.getItem('partyUsers')) || {};
 
-    if (pin === storedPin) {
+    if (allParties[pin]) {
+      localStorage.setItem('currentParty', pin);
       navigate('/select');
     } else {
-      setError('PIN incorrecto o no existe ninguna party');
+      setError('PIN no válido o la party no existe');
     }
   };
 
@@ -25,7 +26,7 @@ function JoinParty() {
           type="text"
           value={pin}
           onChange={(e) => {
-            setPin(e.target.value);
+            setPin(e.target.value.toUpperCase());
             setError('');
           }}
         />

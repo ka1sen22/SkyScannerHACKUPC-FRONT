@@ -3,16 +3,21 @@ import { useNavigate } from 'react-router-dom';
 
 function UserSelection() {
   const [users, setUsers] = useState([]);
+  const [pin, setPin] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem('usuarios')) || [];
-    setUsers(storedUsers);
+    const currentPin = localStorage.getItem('currentParty');
+    setPin(currentPin || '');
+
+    const partyUsers = JSON.parse(localStorage.getItem('partyUsers')) || {};
+    const usuarios = currentPin ? partyUsers[currentPin] || [] : [];
+
+    setUsers(usuarios);
   }, []);
 
   const handleSelect = (user) => {
-    alert('Usuario seleccionado: ${user.name}');
-    // Aquí puedes redirigir o guardar usuario activo
+    alert(`Usuario seleccionado: ${user.name}`);
   };
 
   const handleAddUser = () => {
@@ -22,6 +27,11 @@ function UserSelection() {
   return (
     <div className="user-selection">
       <h2>¿Quién eres?</h2>
+      {pin && (
+        <p className="pin-info">
+          PIN de la party: <strong>{pin}</strong>
+        </p>
+      )}
       <div className="user-grid">
         {users.map((user) => (
           <div key={user.id} className="user-container">

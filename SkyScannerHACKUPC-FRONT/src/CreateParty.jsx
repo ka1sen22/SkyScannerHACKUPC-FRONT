@@ -1,40 +1,31 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function CreateParty() {
   const navigate = useNavigate();
-  const [pin, setPin] = useState('');
-  const [error, setError] = useState('');
 
-  const handleCreate = () => {
-    if (!pin) {
-      setError('Debes ingresar un PIN');
-      return;
+  const generarPin = () => {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let pin = '';
+    for (let i = 0; i < 6; i++) {
+      pin += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     }
-
-    localStorage.setItem('partyPin', pin);
-    localStorage.setItem('partyUsers', JSON.stringify([])); // iniciamos sin usuarios
-    navigate('/select');
+    return pin;
   };
 
-  return (
-    <div className="menu">
-      <h2>Crear nueva Party</h2>
-      <label>
-        Introduce un PIN para la party:
-        <input
-          type="text"
-          value={pin}
-          onChange={(e) => {
-            setPin(e.target.value);
-            setError('');
-          }}
-        />
-      </label>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button onClick={handleCreate}>Crear Party</button>
-    </div>
-  );
+  useEffect(() => {
+    const nuevoPin = generarPin();
+
+    localStorage.setItem('currentParty', nuevoPin);
+
+    const allParties = JSON.parse(localStorage.getItem('partyUsers')) || {};
+    allParties[nuevoPin] = [];
+    localStorage.setItem('partyUsers', JSON.stringify(allParties));
+
+    navigate('/select');
+  }, [navigate]);
+
+  return null;
 }
 
 export default CreateParty;

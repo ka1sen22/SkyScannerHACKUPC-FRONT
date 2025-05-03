@@ -20,10 +20,17 @@ function CreateUser() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios')) || [];
+    const currentPin = localStorage.getItem('currentParty');
+    if (!currentPin) {
+      alert('No hay una party activa.');
+      return;
+    }
 
-    if (usuariosGuardados.length >= 4) {
-      alert('Ya hay 4 usuarios. No se pueden crear más.');
+    const allParties = JSON.parse(localStorage.getItem('partyUsers')) || {};
+    const users = allParties[currentPin] || [];
+
+    if (users.length >= 4) {
+      alert('Esta party ya tiene 4 usuarios.');
       return;
     }
 
@@ -33,8 +40,8 @@ function CreateUser() {
       ...formData
     };
 
-    const nuevosUsuarios = [...usuariosGuardados, nuevoUsuario];
-    localStorage.setItem('usuarios', JSON.stringify(nuevosUsuarios));
+    allParties[currentPin] = [...users, nuevoUsuario];
+    localStorage.setItem('partyUsers', JSON.stringify(allParties));
 
     navigate('/select');
   };
@@ -54,7 +61,7 @@ function CreateUser() {
           />
         </div>
         <div className="form-group">
-          <label>Ubicación actual:</label>
+          <label>Ubicación:</label>
           <input
             type="text"
             name="ubicacion"
@@ -81,13 +88,13 @@ function CreateUser() {
           />
         </div>
         <div className="form-group">
-            <label>Fechas:</label>
-            <input
-              type="date"
-              name="fechas"
-              value={formData.fechas}
-              onChange={handleChange}
-            />
+          <label>Fechas:</label>
+          <input
+            type="date"
+            name="fechas"
+            value={formData.fechas}
+            onChange={handleChange}
+          />
         </div>
         <button type="submit">Guardar</button>
       </form>
