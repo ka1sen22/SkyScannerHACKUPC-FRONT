@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
+import LoadingScreen from './LoadingScreen';
 
 function UserSelection() {
   const [users, setUsers] = useState([]);
   const [pin, setPin] = useState('');
   const [partyId, setPartyId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:8000/api/';
 
@@ -15,14 +17,12 @@ function UserSelection() {
 
     const fetchUsersFiltered = async () => {
       try {
-        // 1. Obtener ID real de la party desde el código
         const partyRes = await fetch(`${API_BASE_URL}parties/${currentPin}/`);
         if (!partyRes.ok) throw new Error('No se pudo obtener la party');
         const partyData = await partyRes.json();
         const currentPartyId = partyData.id;
         setPartyId(currentPartyId);
 
-        // 2. Obtener usuarios y preferencias
         const [usersRes, prefsRes] = await Promise.all([
           fetch(`${API_BASE_URL}users/`),
           fetch(`${API_BASE_URL}preferences/`)
@@ -33,10 +33,8 @@ function UserSelection() {
         const allUsers = await usersRes.json();
         const allPrefs = await prefsRes.json();
 
-        // 3. Extraer IDs de usuarios con preferencias
         const userIdsWithPrefs = new Set(allPrefs.map((pref) => pref.user));
 
-        // 4. Filtrar usuarios por party y marcar si tienen preferencias
         const filteredUsers = allUsers
           .filter((user) => user.party === currentPartyId)
           .map((user) => ({
@@ -72,16 +70,24 @@ function UserSelection() {
     navigate('/create');
   };
 
+  const handleListo = () => {
+    setIsLoading(true);
+
+  };
+
+  // ✅ Mostrar pantalla de carga si está activa
+  if (isLoading) return <LoadingScreen />;
+
   return (
     <div className="user-selection">
-      <BackButton/>
+      <BackButton />
       <h2>¿Quién eres?</h2>
       {pin && (
         <p className="pin-info">
           Código de la party: <strong>{pin}</strong>
         </p>
       )}
-  
+
       <div className="user-grid">
         {users.map((user) => (
           <div key={user.id} className="user-container">
@@ -93,7 +99,7 @@ function UserSelection() {
             </div>
           </div>
         ))}
-  
+
         {users.length < 4 && (
           <div className="user-container">
             <div className="user-card add-user" onClick={handleAddUser}>
@@ -103,10 +109,9 @@ function UserSelection() {
           </div>
         )}
       </div>
-  
-      {/* ✅ Botón "Listo" visible solo si todos los usuarios tienen preferencias */}
+
       {users.length > 0 && users.every(user => user.has_preferences) && (
-        <button className="btn-listo" onClick={() => navigate('/finalizar')}>
+        <button className="btn-listo" onClick={handleListo}>
           Listo
         </button>
       )}
