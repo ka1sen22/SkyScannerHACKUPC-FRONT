@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from './BackButton';
 
 function CreateUser() {
   const navigate = useNavigate();
@@ -85,6 +86,7 @@ function CreateUser() {
 
   return (
     <div className="menu">
+      <BackButton />
       <h2>Crear usuario</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
