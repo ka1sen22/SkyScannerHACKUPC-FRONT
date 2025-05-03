@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Menu() {
@@ -6,11 +5,22 @@ function Menu() {
 
   return (
     <div className="menu">
-      <h1>Nombre app</h1>
-      <p>Crea una party para viaje tal tal</p>
-      <button onClick={() => navigate('/party')}>Create</button>
-      <br />
-      <button onClick={() => navigate('/joinparty')}>Join</button>
+      {/* Botón Create */}
+      <button onClick={() => navigate('/party')} className="menu-button">
+        Create
+      </button>
+
+      {/* Sección Join con logo arriba */}
+      <div className="join-section">
+        <img
+          src="/vite.svg"
+          alt="Skyscanner Logo"
+          className="skyscanner-logo"
+        />
+        <button onClick={() => navigate('/joinparty')} className="menu-button">
+          Join
+        </button>
+      </div>
     </div>
   );
 }

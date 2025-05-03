@@ -1,7 +1,17 @@
+/* Colores de Skyscanner */
+:root {
+  --Seasalt:    #F9F9FA;
+  --Silver:     #CDD1D5;
+  --CelticBlue: #0163E3;
+  --OxfordBlue: #0B243F;
+  --Gray:       #7F848D;
+}
+
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
-  background-color: rgb(100, 129, 202);
+  background-color: var(--CelticBlue);
+  background-image: url('/sky.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -11,12 +21,46 @@ body {
 }
 
 .menu {
-  background: white;
-  padding: 2rem;
-  width: 650px;
+  /* Fondo blanco semitransparente al 75% y más estrecho */
+  background: rgba(255, 255, 255, 0.75);
+  padding: 1.5rem;
+  width: 500px;
   border-radius: 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   position: relative;
+  text-align: center;
+}
+
+/* Botones outlined y con hover suave */
+.menu button {
+  display: inline-block;
+  margin: 1rem auto;
+  width: 180px;
+  padding: 0.8rem;
+  font-size: 18px;
+  background: transparent;
+  color: var(--OxfordBlue);
+  border: 2px solid var(--CelticBlue);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.menu button:hover {
+  background: var(--CelticBlue);
+  color: var(--Seasalt);
+  transform: translateY(-2px);
+}
+
+.join-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skyscanner-logo {
+  width: 120px;           /* ajusta tamaño si hace falta */
+  margin-bottom: 0.8rem;  /* espacio entre logo y botón */
 }
 
 form {
