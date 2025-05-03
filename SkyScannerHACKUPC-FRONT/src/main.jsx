@@ -8,6 +8,7 @@ import UserSelection from './UserSelection';
 import CreateParty from './CreateParty';
 import JoinParty from './JoinParty';
 import Preferences from './Preferences';
+import Finalizar from './Finalizar';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/party" element={<CreateParty />} />
         <Route path="/joinparty" element={<JoinParty />} /> 
         <Route path="/preferencias" element={<Preferences />} />
+        <Route path="/finalizar" element={<Finalizar />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
