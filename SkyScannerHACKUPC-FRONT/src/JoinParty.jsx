@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from './BackButton';
+
 function JoinParty() {
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
@@ -22,6 +24,7 @@ function JoinParty() {
   };
   return (
     <div className="menu">
+      <BackButton/>
       <h2>Unirse a una Party</h2>
       <label>
         Introduce el PIN:
