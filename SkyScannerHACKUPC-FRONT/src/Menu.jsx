@@ -8,9 +8,9 @@ function Menu() {
     <div className="menu">
       <h1>Nombre app</h1>
       <p>Crea una party para viaje tal tal</p>
-      <button onClick={() => navigate('/create')}>Create</button>
+      <button onClick={() => navigate('/party')}>Create</button>
       <br />
-      <button onClick={() => navigate('/join')}>Join</button>
+      <button onClick={() => navigate('/joinparty')}>Join</button>
     </div>
   );
 }
