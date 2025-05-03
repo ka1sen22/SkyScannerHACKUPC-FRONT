@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 function CreateParty() {
   const navigate = useNavigate();
-  const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:26969/api/';
+  const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:8000/api/';
+
   useEffect(() => {
     const crearParty = async () => {
       try {
@@ -13,22 +15,31 @@ function CreateParty() {
           },
           body: JSON.stringify({}) // El código lo genera el backend
         });
+
         if (!response.ok) {
           throw new Error('Error al crear la party');
         }
+
         const data = await response.json();
         const partyCode = data.code;
-        // Guardamos el código en localStorage
+        const partyId = data.id;
+
         localStorage.setItem('currentParty', partyCode);
-        // Redirigimos al formulario para unirse
-        navigate('/join');
+        localStorage.setItem('currentPartyId', partyId);
+        localStorage.setItem('isHost', 'true'); // Marcar como host
+
+        navigate('/create');
+
       } catch (error) {
         console.error('Error creando party:', error);
         alert('No se pudo crear la party. Revisa la consola.');
       }
     };
+
     crearParty();
   }, [navigate]);
+
   return null;
 }
+
 export default CreateParty;

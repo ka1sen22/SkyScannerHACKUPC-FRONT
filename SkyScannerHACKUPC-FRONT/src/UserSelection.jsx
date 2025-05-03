@@ -1,36 +1,57 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 function UserSelection() {
   const [users, setUsers] = useState([]);
   const [pin, setPin] = useState('');
+  const [partyId, setPartyId] = useState(null);
   const navigate = useNavigate();
-  const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:26969/api/';
+  const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:8000/api/';
+
   useEffect(() => {
     const currentPin = localStorage.getItem('currentParty');
     setPin(currentPin || '');
+
+    const fetchUsersFiltered = async () => {
+      try {
+        // 1. Obtener la ID real de la party a partir del PIN
+        const partyRes = await fetch(`${API_BASE_URL}parties/${currentPin}/`);
+        if (!partyRes.ok) throw new Error('No se pudo obtener la party');
+        const partyData = await partyRes.json();
+        const currentPartyId = partyData.id;
+        setPartyId(currentPartyId);
+
+        // 2. Obtener todos los usuarios
+        const usersRes = await fetch(`${API_BASE_URL}users/`);
+        if (!usersRes.ok) throw new Error('Error al obtener usuarios');
+        const allUsers = await usersRes.json();
+
+        // 3. Filtrar solo los de esta party
+        const filteredUsers = allUsers.filter(
+          (user) => user.party === currentPartyId
+        );
+
+        setUsers(filteredUsers);
+      } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudieron cargar los usuarios de esta party.');
+      }
+    };
+
     if (currentPin) {
-      fetch(`${API_BASE_URL}parties/${currentPin}/users/`)
-        .then((res) => {
-          if (!res.ok) throw new Error('Error al obtener usuarios');
-          return res.json();
-        })
-        .then((data) => {
-          setUsers(data);
-        })
-        .catch((error) => {
-          console.error('Error al cargar usuarios:', error);
-          alert('No se pudieron cargar los usuarios.');
-        });
+      fetchUsersFiltered();
     }
   }, []);
+
   const handleSelect = (user) => {
-    alert(`Has seleccionado a ${user.name}`);
     localStorage.setItem('currentUserId', user.id);
     navigate('/preferencias');
   };
+
   const handleAddUser = () => {
-    navigate('/join');
+    navigate('/create');
   };
+
   return (
     <div className="user-selection">
       <h2>¿Quién eres?</h2>
@@ -59,4 +80,5 @@ function UserSelection() {
     </div>
   );
 }
+
 export default UserSelection;
