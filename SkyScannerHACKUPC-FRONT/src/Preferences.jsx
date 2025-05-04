@@ -55,7 +55,7 @@ function Preferences() {
         throw new Error(JSON.stringify(err));
       }
       alert('Preferences saved successfully.');
-      navigate('/user-selection');
+      navigate('/select');
     } catch (error) {
       console.error('Error saving preferences:', error);
       alert('Unable to save preferences.');
