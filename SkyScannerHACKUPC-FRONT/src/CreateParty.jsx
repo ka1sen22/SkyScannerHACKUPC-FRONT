@@ -1,5 +1,5 @@
 // src/CreateParty.jsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CreateParty.css';
 
@@ -55,7 +55,6 @@ function CreateParty() {
         const errJson = await userResponse.json().catch(() => null);
         throw new Error(`User creation failed: ${userResponse.status} ${JSON.stringify(errJson)}`);
       }
-      const userData = await userResponse.json();
 
       // Guardar info en localStorage
       localStorage.setItem('currentParty', partyData.code);
@@ -71,37 +70,63 @@ function CreateParty() {
 
   return (
     <div className="create-party-page">
-      <button type="button" className="back-button" onClick={() => navigate('/')}>Volver</button>
+      <button type="button" className="back-button" onClick={() => navigate('/')}>Return</button>
       <div className="create-party-menu">
-        <h2 className="form-title">Crear y Unirse (Host)</h2>
+        <h2 className="form-title">Create Party</h2>
         {error && <p className="form-error">{error}</p>}
         <form onSubmit={handleSubmit} className="party-form">
-          <div className="form-group">
-            <label htmlFor="nombre" className="form-label">Nombre:</label>
-            <input id="nombre" name="nombre" type="text" required
-              className="form-input" value={formData.nombre} onChange={handleChange} />
+          <input
+            name="nombre"
+            type="text"
+            required
+            className="form-input"
+            placeholder="Name"
+            value={formData.nombre}
+            onChange={handleChange}
+          />
+          <input
+            name="ubicacion"
+            type="text"
+            required
+            className="form-input"
+            placeholder="Location"
+            value={formData.ubicacion}
+            onChange={handleChange}
+          />
+          <input
+            name="presupuesto"
+            type="number"
+            required
+            className="form-input"
+            placeholder="Budget (€)"
+            value={formData.presupuesto}
+            onChange={handleChange}
+          />
+          {/* Journey dates group */}
+          <div className="dates-group">
+            <label className="dates-label">Journey Dates</label>
+            <div className="dates-inputs">
+              <input
+                id="fechas"
+                name="fechas"
+                type="date"
+                required
+                className="form-input date-input"
+                value={formData.fechas}
+                onChange={handleChange}
+              />
+              <input
+                id="fechae"
+                name="fechae"
+                type="date"
+                required
+                className="form-input date-input"
+                value={formData.fechae}
+                onChange={handleChange}
+              />
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="ubicacion" className="form-label">Ubicación:</label>
-            <input id="ubicacion" name="ubicacion" type="text" required
-              className="form-input" value={formData.ubicacion} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="presupuesto" className="form-label">Presupuesto (€):</label>
-            <input id="presupuesto" name="presupuesto" type="number" required
-              className="form-input" value={formData.presupuesto} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="fechas" className="form-label">Start Date:</label>
-            <input id="fechas" name="fechas" type="date" required
-              className="form-input" value={formData.fechas} onChange={handleChange} />
-          </div>
-          <div className="form-group">
-            <label htmlFor="fechae" className="form-label">End Date:</label>
-            <input id="fechae" name="fechae" type="date" required
-              className="form-input" value={formData.fechae} onChange={handleChange} />
-          </div>
-          <button type="submit" className="submit-button">Crear Party</button>
+          <button type="submit" className="submit-button">Submit</button>
         </form>
       </div>
     </div>

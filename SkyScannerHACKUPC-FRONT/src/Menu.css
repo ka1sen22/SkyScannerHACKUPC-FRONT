@@ -1,0 +1,74 @@
+/* --------------------------------------------- */
+/* src/Menu.css */
+
+/* Colores Skyscanner */
+:root {
+    --Seasalt:    #F9F9FA;
+    --Silver:     #CDD1D5;
+    --CelticBlue: #0163E3;
+    --OxfordBlue: #0B243F;
+    --Gray:       #7F848D;
+  }
+  
+  /* Reset body for menu page */
+  body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background-color: var(--CelticBlue);
+    background-image: url('/sky.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  /* Contenedor principal del menú */
+  .menu {
+    background: rgba(255, 255, 255, 0.75);
+    padding: 1.5rem;
+    width: 400px;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: absolute; /* Centrado absoluto */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Botón estándar del menú */
+  .menu-button {
+    display: inline-block;
+    margin: 1rem auto;
+    width: 180px;
+    padding: 0.8rem;
+    font-size: 18px;
+    background: transparent;
+    color: var(--OxfordBlue);
+    border: 2px solid var(--CelticBlue);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .menu-button:hover {
+    background: var(--CelticBlue);
+    color: var(--Seasalt);
+    transform: translateY(-2px);
+  }
+  
+  /* Sección Join Party */
+  .join-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Logo de Skyscanner */
+  .skyscanner-logo {
+    width: 120px;
+    margin: 1.5rem 0;
+  }
+  

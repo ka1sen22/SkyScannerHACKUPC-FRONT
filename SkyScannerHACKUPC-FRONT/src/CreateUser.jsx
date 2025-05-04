@@ -34,9 +34,9 @@ function CreateParty() {
 
   return (
     <div className="create-party-page">
-      <button type="button" className="back-button" onClick={() => navigate('/')}>Volver</button>
+      <button type="button" className="back-button" onClick={() => navigate('/')}>Return</button>
       <div className="create-party-menu">
-        <p className="create-message">Creando party...</p>
+        <p className="create-message">Creating Party...</p>
       </div>
     </div>
   );
