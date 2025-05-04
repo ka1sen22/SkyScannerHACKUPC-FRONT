@@ -1,0 +1,66 @@
+/* --------------------------------------------- */
+/* src/CreateParty.css */
+
+/* Colores Skyscanner */
+:root {
+    --Seasalt:    #F9F9FA;
+    --Silver:     #CDD1D5;
+    --CelticBlue: #0163E3;
+    --OxfordBlue: #0B243F;
+    --Gray:       #7F848D;
+}
+
+/* Página de CreateParty: fondo transparente para mostrar el body */
+.create-party-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: transparent;
+    padding: 1rem;
+}
+
+/* Menú interno semitransparente */
+.create-party-menu {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* Estilo del mensaje */
+.create-message {
+    font-size: 1rem;
+    color: var(--OxfordBlue);
+    margin: 0;
+}
+
+/* Botón Volver: mismo estilo que boton Unirse en JoinParty */
+.back-button {
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: var(--CelticBlue);
+    color: var(--Seasalt);
+    border: 2px solid var(--CelticBlue);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    width: auto;
+}
+
+.back-button:hover {
+    background: transparent;
+    color: var(--CelticBlue);
+    transform: translateY(-2px);
+}

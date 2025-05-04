@@ -1,0 +1,101 @@
+
+/* --------------------------------------------- */
+/* src/CreateParty.css */
+
+:root {
+    --Seasalt:    #F9F9FA;
+    --Silver:     #CDD1D5;
+    --CelticBlue: #0163E3;
+    --OxfordBlue: #0B243F;
+    --Gray:       #7F848D;
+  }
+  
+  .create-party-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: transparent;
+    padding: 1rem;
+  }
+  
+  .create-party-menu {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    width: 400px;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .form-title {
+    margin-bottom: 1rem;
+    color: var(--OxfordBlue);
+  }
+  
+  .form-error {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+  }
+  
+  .party-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-label {
+    margin-bottom: 0.5rem;
+    color: var(--OxfordBlue);
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid var(--Silver);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+  }
+  
+  .submit-button,
+  .back-button {
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: var(--CelticBlue);
+    color: var(--Seasalt);
+    border: 2px solid var(--CelticBlue);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    width: 100%;
+  }
+  
+  .back-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: auto;
+    margin: 0;
+  }
+  
+  .submit-button:hover,
+  .back-button:hover {
+    background: transparent;
+    color: var(--CelticBlue);
+    transform: translateY(-2px);
+  }
+  

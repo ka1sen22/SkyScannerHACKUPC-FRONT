@@ -1,4 +1,4 @@
-/* Colores de Skyscanner */
+Colores de Skyscanner
 :root {
   --Seasalt:    #F9F9FA;
   --Silver:     #CDD1D5;
@@ -24,7 +24,7 @@ body {
   /* Fondo blanco semitransparente al 75% y más estrecho */
   background: rgba(255, 255, 255, 0.75);
   padding: 1.5rem;
-  width: 500px;
+  width: 400px;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   position: relative;
@@ -60,7 +60,8 @@ body {
 
 .skyscanner-logo {
   width: 120px;           /* ajusta tamaño si hace falta */
-  margin-bottom: 0.8rem;  /* espacio entre logo y botón */
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 form {
