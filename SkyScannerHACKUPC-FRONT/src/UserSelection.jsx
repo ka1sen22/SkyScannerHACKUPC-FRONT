@@ -16,31 +16,31 @@ function UserSelection() {
 
     const fetchUsersFiltered = async () => {
       try {
-        // 1. Obtener ID real de la party desde el código
+        // 1. Fetch real party ID by code
         const partyRes = await fetch(`${API_BASE_URL}parties/${currentPin}/`);
-        if (!partyRes.ok) throw new Error('No se pudo obtener la party');
+        if (!partyRes.ok) throw new Error('Failed to fetch party');
         const partyData = await partyRes.json();
         const currentPartyId = partyData.id;
         setPartyId(currentPartyId);
 
-        // 2. Obtener usuarios y preferencias
+        // 2. Fetch users and preferences
         const [usersRes, prefsRes] = await Promise.all([
           fetch(`${API_BASE_URL}users/`),
           fetch(`${API_BASE_URL}preferences/`)
         ]);
 
-        if (!usersRes.ok || !prefsRes.ok) throw new Error('Error cargando datos');
+        if (!usersRes.ok || !prefsRes.ok) throw new Error('Error loading data');
 
         const allUsers = await usersRes.json();
         const allPrefs = await prefsRes.json();
 
-        // 3. Extraer IDs de usuarios con preferencias
-        const userIdsWithPrefs = new Set(allPrefs.map((pref) => pref.user));
+        // 3. Extract IDs of users with preferences
+        const userIdsWithPrefs = new Set(allPrefs.map(pref => pref.user));
 
-        // 4. Filtrar usuarios por party y marcar si tienen preferencias
+        // 4. Filter users by party and mark preferences
         const filteredUsers = allUsers
-          .filter((user) => user.party === currentPartyId)
-          .map((user) => ({
+          .filter(user => user.party === currentPartyId)
+          .map(user => ({
             ...user,
             has_preferences: userIdsWithPrefs.has(user.id)
           }));
@@ -48,7 +48,7 @@ function UserSelection() {
         setUsers(filteredUsers);
       } catch (error) {
         console.error('Error:', error);
-        alert('No se pudieron cargar los usuarios de esta party.');
+        alert('Unable to load party members.');
       }
     };
 
@@ -57,16 +57,16 @@ function UserSelection() {
     }
   }, [navigate]);
 
-  const handleSelect = (user) => {
+  const handleSelect = user => {
     if (user.has_preferences) {
       const confirmChange = window.confirm(
-        `El usuario "${user.name}" ya tiene preferencias guardadas. ¿Quieres modificarlas?`
+        `User "${user.name}" already has preferences. Modify them?`
       );
       if (!confirmChange) return;
     }
 
     localStorage.setItem('currentUserId', user.id);
-    navigate('/preferencias');
+    navigate('/preferences');
   };
 
   const handleAddUser = () => {
@@ -75,15 +75,15 @@ function UserSelection() {
 
   return (
     <div className="user-selection">
-      <h2>¿Quién eres?</h2>
+      <h2 className="selection-title">Who are you?</h2>
       {pin && (
         <p className="pin-info">
-          Código de la party: <strong>{pin}</strong>
+          Party Code: <strong>{pin}</strong>
         </p>
       )}
-  
+
       <div className="user-grid">
-        {users.map((user) => (
+        {users.map(user => (
           <div key={user.id} className="user-container">
             <div
               className={`user-card ${user.has_preferences ? 'has-preferences' : ''}`}
@@ -93,21 +93,20 @@ function UserSelection() {
             </div>
           </div>
         ))}
-  
+
         {users.length < 4 && (
           <div className="user-container">
             <div className="user-card add-user" onClick={handleAddUser}>
               <span className="plus-icon">+</span>
             </div>
-            <p className="user-name">Añadir</p>
+            <p className="user-name">Add</p>
           </div>
         )}
       </div>
-  
-      {/* ✅ Botón "Listo" visible solo si todos los usuarios tienen preferencias */}
+
       {users.length > 0 && users.every(user => user.has_preferences) && (
-        <button className="btn-listo" onClick={() => navigate('/finalizar')}>
-          Listo
+        <button className="btn-ready" onClick={() => navigate('/finalize')}>
+          Ready
         </button>
       )}
     </div>
