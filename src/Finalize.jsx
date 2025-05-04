@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import './Finalize.css';
 
-const API_BASE_URL = 'http://localhost:8000/api/';
+const API_BASE_URL = 'http://172.16.0.200:8000/api/';
 
 export default function Finalize() {
   const [country, setCountry] = useState(null);

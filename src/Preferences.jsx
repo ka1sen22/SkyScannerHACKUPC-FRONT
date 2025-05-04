@@ -14,7 +14,7 @@ function Preferences() {
     Weather: 3,
     Events: 3,
   });
-  const API_BASE_URL = 'http://localhost:8000/api/';
+  const API_BASE_URL = 'http://172.16.0.200:8000/api/';
 
   useEffect(() => {
     const id = localStorage.getItem('currentUserId');

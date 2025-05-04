@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 function FinalizarViaje() {
   const [flightData, setFlightData] = useState(null);
   const [error, setError] = useState(null);
-  const API_BASE_URL = 'http://localhost:8000/api/';
+  const API_BASE_URL = 'http://172.16.0.200:8000/api/';
   
   useEffect(() => {
     const partyId = localStorage.getItem('currentPartyId');

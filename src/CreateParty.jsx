@@ -5,7 +5,7 @@ import './CreateParty.css';
 
 function CreateParty() {
   const navigate = useNavigate();
-  const API_BASE_URL = 'http://localhost:8000/api/';
+  const API_BASE_URL = 'http://172.16.0.200:8000/api/';
 
   const [formData, setFormData] = useState({
     nombre: '',
