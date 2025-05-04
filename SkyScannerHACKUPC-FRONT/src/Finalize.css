@@ -1,0 +1,78 @@
+
+/* --------------------------------------------- */
+/* src/Finalize.css */
+
+:root {
+    --Seasalt:    #F9F9FA;
+    --Silver:     #CDD1D5;
+    --CelticBlue: #0163E3;
+    --OxfordBlue: #0B243F;
+    --Gray:       #7F848D;
+  }
+  
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .finalize {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: transparent;
+    padding: 1rem;
+  }
+  
+  .finalize-content {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    max-width: 600px;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  
+  .finalize-content h2 {
+    color: var(--OxfordBlue);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .country-name {
+    display: block;
+    color: var(--Gray);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .image-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  .city-image {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  
+  .confirm-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    background: var(--CelticBlue);
+    color: var(--Seasalt);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .confirm-button:hover {
+    background: transparent;
+    color: var(--CelticBlue);
+    transform: translateY(-2px);
+  }
+  
