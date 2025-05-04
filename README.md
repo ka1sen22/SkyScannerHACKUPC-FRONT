@@ -1,12 +1,70 @@
-# React + Vite
+<div align="center">
+  <img src="logo.png" alt="logo" width="200" height="auto" />
+  <h1>SkyScannerHACKUPC-FRONT</h1>
+  
+  <p>
+    Una interfaz frontend para SkyScannerHACKUPC, diseñada para proporcionar una experiencia de usuario fluida y funcional.
+  </p>
+  
+<h4>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Reportar un Bug</a>
+  <span> · </span>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Solicitar una Función</a>
+  <span> · </span>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/pulls">Contribuir</a>
+  </h4>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br />
 
-Currently, two official plugins are available:
+## Disclaimer
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este proyecto fue desarrollado como parte del evento HACKUPC. El código se proporciona "tal cual" y no se garantiza un desarrollo o mantenimiento futuro. Siéntete libre de adaptar el código a tus necesidades.
 
-## Expanding the ESLint configuration
+<!-- About the Project -->
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Acerca del Proyecto
+
+SkyScannerHACKUPC-FRONT es una interfaz frontend construida con JavaScript, CSS y HTML. Este proyecto está destinado a complementar el backend y proporcionar una experiencia de usuario interactiva y atractiva.
+
+<!-- Requirements -->
+
+## Requisitos
+
+Para ejecutar este proyecto, necesitas un servidor HTTP. Puedes usar cualquier servidor estático como `http-server`:
+
+```bash
+npm install -g http-server
+```
+
+<!-- Get Started -->
+
+## Comenzar
+
+Clona el proyecto:
+
+```bash
+git clone https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT.git
+```
+
+Navega al directorio del proyecto:
+
+```bash
+cd SkyScannerHACKUPC-FRONT
+```
+
+Inicia un servidor local:
+
+```bash
+http-server
+```
+
+Luego, abre tu navegador en `http://localhost:8080` (o el puerto que indique `http-server`).
+
+<!-- License -->
+
+## Licencia
+
+Distribuido bajo la Licencia MIT. Consulta el archivo LICENSE.txt para más información.
+
+---
