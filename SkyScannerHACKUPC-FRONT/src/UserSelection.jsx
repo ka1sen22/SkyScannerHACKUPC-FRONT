@@ -66,7 +66,7 @@ function UserSelection() {
     }
 
     localStorage.setItem('currentUserId', user.id);
-    navigate('/preferences');
+    navigate('/preferencias');
   };
 
   const handleAddUser = () => {

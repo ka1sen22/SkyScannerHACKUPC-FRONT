@@ -98,20 +98,20 @@ html, body, #root {
   color: var(--Gray);
 }
 
-.btn-listo {
+.btn-ready {
   padding: 0.8rem 2rem;
   font-size: 1rem;
-  background: var(--CelticBlue);
-  color: var(--Seasalt);
-  border: none;
+  background: transparent;
+  color: var(--CelticBlue);
+  border: 2px solid var(--CelticBlue);
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
   width: 100%;
 }
 
-.btn-listo:hover {
-  background: transparent;
-  color: var(--CelticBlue);
+.btn-ready:hover {
+  background: var(--CelticBlue);
+  color: var(--Seasalt);
   transform: translateY(-2px);
 }
