@@ -3,15 +3,15 @@
   <h1>SkyScannerHACKUPC-FRONT</h1>
   
   <p>
-    Una interfaz frontend para SkyScannerHACKUPC, diseñada para proporcionar una experiencia de usuario fluida y funcional.
+    A frontend interface for SkyScannerHACKUPC, designed to provide a smooth and functional user experience.
   </p>
   
 <h4>
-    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Reportar un Bug</a>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Report a Bug</a>
   <span> · </span>
-    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Solicitar una Función</a>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/issues/">Request a Feature</a>
   <span> · </span>
-    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/pulls">Contribuir</a>
+    <a href="https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT/pulls">Contribute</a>
   </h4>
 </div>
 
@@ -19,19 +19,19 @@
 
 ## Disclaimer
 
-Este proyecto fue desarrollado como parte del evento HACKUPC. El código se proporciona "tal cual" y no se garantiza un desarrollo o mantenimiento futuro. Siéntete libre de adaptar el código a tus necesidades.
+This project was developed as part of the HACKUPC event. The code is provided "as is" and further development or maintenance is not guaranteed. Feel free to adapt the code to your needs.
 
 <!-- About the Project -->
 
-## Acerca del Proyecto
+## About the Project
 
-SkyScannerHACKUPC-FRONT es una interfaz frontend construida con JavaScript, CSS y HTML. Este proyecto está destinado a complementar el backend y proporcionar una experiencia de usuario interactiva y atractiva.
+SkyScannerHACKUPC-FRONT is a frontend interface built with JavaScript, CSS, and HTML. This project is intended to complement the backend and provide an interactive and engaging user experience.
 
 <!-- Requirements -->
 
-## Requisitos
+## Requirements
 
-Para ejecutar este proyecto, necesitas un servidor HTTP. Puedes usar cualquier servidor estático como `http-server`:
+To run this project, you need an HTTP server. You can use any static server like `http-server`:
 
 ```bash
 npm install -g http-server
@@ -39,32 +39,30 @@ npm install -g http-server
 
 <!-- Get Started -->
 
-## Comenzar
+## Get Started
 
-Clona el proyecto:
+Clone the project:
 
 ```bash
 git clone https://github.com/ka1sen22/SkyScannerHACKUPC-FRONT.git
 ```
 
-Navega al directorio del proyecto:
+Navigate to the project directory:
 
 ```bash
 cd SkyScannerHACKUPC-FRONT
 ```
 
-Inicia un servidor local:
+Start a local server:
 
 ```bash
 http-server
 ```
 
-Luego, abre tu navegador en `http://localhost:8080` (o el puerto que indique `http-server`).
+Then, open your browser at `http://localhost:8080` (or the port indicated by `http-server`).
 
 <!-- License -->
 
-## Licencia
+## License
 
-Distribuido bajo la Licencia MIT. Consulta el archivo LICENSE.txt para más información.
-
----
+Distributed under the MIT License. See LICENSE.txt for more information.
