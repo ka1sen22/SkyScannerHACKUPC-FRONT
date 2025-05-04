@@ -53,7 +53,7 @@ function CreateUser() {
         party: Number(partyId)
       };
 
-      const response = await fetch('http://hg209znye8r.sn.mynetname.net:8000/api/users/', {
+      const response = await fetch('http://localhost:8000/api/users/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

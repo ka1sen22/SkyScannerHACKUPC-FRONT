@@ -9,10 +9,5 @@ export default defineConfig({
     allowedHosts: [
       'hackupc2025.kire.ovh'
     ],
-
-    // hmr: {
-    //   host: 'hackupc2025.kire.ovh',
-    //   protocol: 'ws'
-    // }
   }
 })
