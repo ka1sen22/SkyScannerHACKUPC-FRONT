@@ -1,0 +1,117 @@
+
+/* --------------------------------------------- */
+/* src/UserSelection.css */
+
+:root {
+  --Seasalt:    #F9F9FA;
+  --Silver:     #CDD1D5;
+  --CelticBlue: #0163E3;
+  --OxfordBlue: #0B243F;
+  --Gray:       #7F848D;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-selection {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.selection-title {
+  margin-bottom: 1rem;
+  color: var(--OxfordBlue);
+  font-size: 1.5rem;
+}
+
+.pin-info {
+  margin-bottom: 1.5rem;
+  color: var(--Gray);
+  font-size: 0.9rem;
+}
+
+.user-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;             /* spacing between cards */
+  justify-content: space-between; /* distribute across row */
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-card {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(5px);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--OxfordBlue);
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+.user-card.has-preferences {
+  border-color: var(--CelticBlue);
+  background: rgba(1, 99, 227, 0.15);
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+  background: rgba(1, 99, 227, 0.2);
+}
+
+.user-name {
+  margin: 0;
+  color: var(--OxfordBlue);
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.add-user {
+  background: transparent;
+  border: 2px dashed var(--OxfordBlue);
+}
+
+.plus-icon {
+  font-size: 2rem;
+  color: var(--Gray);
+}
+
+.btn-listo {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background: var(--CelticBlue);
+  color: var(--Seasalt);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.btn-listo:hover {
+  background: transparent;
+  color: var(--CelticBlue);
+  transform: translateY(-2px);
+}

@@ -1,6 +1,7 @@
+// src/UserSelection.jsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackButton from './BackButton';
+import './UserSelection.css';
 
 function UserSelection() {
   const [users, setUsers] = useState([]);
@@ -54,7 +55,7 @@ function UserSelection() {
     if (currentPin) {
       fetchUsersFiltered();
     }
-  }, []);
+  }, [navigate]);
 
   const handleSelect = (user) => {
     if (user.has_preferences) {
@@ -74,7 +75,6 @@ function UserSelection() {
 
   return (
     <div className="user-selection">
-      <BackButton/>
       <h2>¿Quién eres?</h2>
       {pin && (
         <p className="pin-info">

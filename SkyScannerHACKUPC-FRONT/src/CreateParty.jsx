@@ -80,7 +80,7 @@ function CreateParty() {
             type="text"
             required
             className="form-input"
-            placeholder="Name"
+            placeholder="Your Name"
             value={formData.nombre}
             onChange={handleChange}
           />

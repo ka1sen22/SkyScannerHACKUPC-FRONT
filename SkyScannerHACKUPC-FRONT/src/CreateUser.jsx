@@ -1,45 +1,119 @@
-// src/CreateParty.jsx
-import { useEffect } from 'react';
+// src/CreateUser.jsx
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CreateParty.css';
+import './CreateUser.css';
 
-function CreateParty() {
+function CreateUser() {
   const navigate = useNavigate();
-  const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:8000/api/';
+  const [pin, setPin] = useState('');
+  const [partyId, setPartyId] = useState(null);
+  const [isHost, setIsHost] = useState(false);
+  const [formData, setFormData] = useState({
+    nombre: '',
+    ubicacion: '',
+    presupuesto: ''
+  });
 
   useEffect(() => {
-    const crearParty = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}parties/`, {
-          method: 'POST',
-          headers: { 'Content-TypeRevi': 'application/json' },
-          body: JSON.stringify({})
-        });
+    const currentPin = localStorage.getItem('currentParty');
+    const currentPartyId = localStorage.getItem('currentPartyId');
+    const hostFlag = localStorage.getItem('isHost');
 
-        if (!response.ok) throw new Error('Error al crear la party');
-        const data = await response.json();
+    if (!currentPin || !currentPartyId) {
+      alert('No active party found.');
+      navigate('/');
+      return;
+    }
 
-        localStorage.setItem('currentParty', data.code);
-        localStorage.setItem('currentPartyId', data.id);
-        localStorage.setItem('isHost', 'true');
+    setPin(currentPin);
+    setPartyId(currentPartyId);
+    setIsHost(hostFlag === 'true');
 
-        navigate('/create');
-      } catch (error) {
-        console.error('Error creando party:', error);
-        alert('No se pudo crear la party. Revisa la consola.');
-      }
-    };
-    crearParty();
+    if (hostFlag === 'true') {
+      // If host, redirect to host view
+      navigate('/create');
+    }
   }, [navigate]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!partyId) return;
+
+    try {
+      const payload = {
+        name: formData.nombre,
+        city: formData.ubicacion,
+        budget: Number(formData.presupuesto),
+        is_host: false,
+        party: Number(partyId)
+      };
+
+      const response = await fetch('http://hg209znye8r.sn.mynetname.net:8000/api/users/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData ? JSON.stringify(errorData) : 'Error creating user');
+      }
+
+      // User created successfully
+      localStorage.removeItem('isHost');
+      navigate('/select');
+    } catch (err) {
+      console.error('Error creating user:', err);
+      alert('Error creating user. Check console for details.');
+    }
+  };
+
   return (
-    <div className="create-party-page">
-      <button type="button" className="back-button" onClick={() => navigate('/')}>Return</button>
-      <div className="create-party-menu">
-        <p className="create-message">Creating Party...</p>
+    <div className="create-user-page">
+      <button type="button" className="back-button" onClick={() => navigate('/')}>Back</button>
+      <div className="create-user-menu">
+        <h2 className="form-title">New User</h2>
+        <form onSubmit={handleSubmit} className="user-form">
+          <input
+            name="nombre"
+            type="text"
+            required
+            className="form-input"
+            placeholder="Name"
+            value={formData.nombre}
+            onChange={handleChange}
+          />
+          <input
+            name="ubicacion"
+            type="text"
+            required
+            className="form-input"
+            placeholder="Location"
+            value={formData.ubicacion}
+            onChange={handleChange}
+          />
+          <input
+            name="presupuesto"
+            type="number"
+            required
+            className="form-input"
+            placeholder="Budget (€)"
+            value={formData.presupuesto}
+            onChange={handleChange}
+          />
+          <div className="pin-display">
+            Party PIN: <strong>{pin}</strong>
+          </div>
+          <button type="submit" className="submit-button">Save</button>
+        </form>
       </div>
     </div>
   );
 }
 
-export default CreateParty;
+export default CreateUser;

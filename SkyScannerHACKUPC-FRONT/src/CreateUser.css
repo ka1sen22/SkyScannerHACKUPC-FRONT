@@ -1,45 +1,67 @@
-/* --------------------------------------------- */
-/* src/CreateParty.css */
+/* src/CreateUser.css */
 
-/* Colores Skyscanner */
 :root {
     --Seasalt:    #F9F9FA;
     --Silver:     #CDD1D5;
     --CelticBlue: #0163E3;
     --OxfordBlue: #0B243F;
     --Gray:       #7F848D;
-}
-
-/* Página de CreateParty: fondo transparente para mostrar el body */
-.create-party-page {
+  }
+  
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .create-user-page {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background: transparent;
+    height: 100%;
+    background: transparent;  /* Transparent to show global background */
     padding: 1rem;
-}
-
-/* Menú interno semitransparente */
-.create-party-menu {
+  }
+  
+  .create-user-menu {
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     width: 400px;
     border-radius: 0.75rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     text-align: center;
-}
-
-/* Estilo del mensaje */
-.create-message {
-    font-size: 1rem;
+  }
+  
+  .form-title {
+    margin-bottom: 1rem;
     color: var(--OxfordBlue);
-    margin: 0;
-}
-
-/* Botón Volver: mismo estilo que boton Unirse en JoinParty */
-.back-button {
+  }
+  
+  .user-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid var(--Silver);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+  }
+  
+  .pin-display {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    color: var(--OxfordBlue);
+  }
+  
+  .submit-button,
+  .back-button {
     padding: 0.8rem;
     font-size: 1rem;
     background: var(--CelticBlue);
@@ -52,15 +74,21 @@
     align-items: center;
     justify-content: center;
     margin: 0 auto 1rem auto;
+    width: 100%;
+  }
+  
+  .back-button {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    z-index: 1000;
     width: auto;
-}
-
-.back-button:hover {
+    margin: 0;
+  }
+  
+  .submit-button:hover,
+  .back-button:hover {
     background: transparent;
     color: var(--CelticBlue);
     transform: translateY(-2px);
-}
+  }
+  

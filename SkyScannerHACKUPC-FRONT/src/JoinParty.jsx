@@ -1,3 +1,4 @@
+// src/JoinParty.jsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
@@ -13,23 +14,23 @@ function JoinParty() {
     try {
       const response = await fetch(`${API_BASE_URL}parties/code/${pin}/`);
       if (!response.ok) {
-        throw new Error('La party no existe');
+        throw new Error('Party does not exist');
       }
       localStorage.setItem('currentParty', pin);
       setError('');
       navigate('/select');
     } catch (err) {
-      console.error('Error al buscar la party:', err);
-      setError('PIN no válido o la party no existe');
+      console.error('Error fetching party:', err);
+      setError('Invalid PIN or party does not exist');
     }
   };
 
   return (
     <div className="join-party-page">
       <BackButton />
-      <div className="menu join-party-menu">
+      <div className="join-party-menu">
         <label htmlFor="pin-input" className="join-label">
-          Introduce el PIN
+          Enter PIN
         </label>
         <input
           id="pin-input"
@@ -40,10 +41,11 @@ function JoinParty() {
             setError('');
           }}
           className="join-input"
+          placeholder="XXXXXX"
         />
         {error && <p className="join-error">{error}</p>}
-        <button onClick={handleJoin} className="join-button">
-          Unirse
+        <button type="button" onClick={handleJoin} className="join-button">
+          Join
         </button>
       </div>
     </div>
