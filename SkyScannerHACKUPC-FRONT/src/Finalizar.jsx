@@ -1,76 +1,44 @@
 import { useEffect, useState } from 'react';
-import BackButton from './BackButton';
-import LoadingScreen from './LoadingScreen';
 
-function Finalizar() {
-  const [resultado, setResultado] = useState(null);
-  const [loading, setLoading] = useState(true);
+function FinalizarViaje() {
+  const [flightData, setFlightData] = useState(null);
+  const [error, setError] = useState(null);
   const API_BASE_URL = 'http://hg209znye8r.sn.mynetname.net:8000/api/';
-  const currentPin = localStorage.getItem('currentParty');
-
+  
   useEffect(() => {
-    const fetchResultados = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}parties/${currentPin}/resultados/`);
-        if (!res.ok) throw new Error('No se pudo obtener el resultado');
-        const data = await res.json();
-        setResultado(data);
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error al obtener resultados. Consulta consola.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchResultados();
-  }, [currentPin]);
-
-  if (loading) {
-    return (
-      <div className="menu">
-        <LoadingScreen />
-      </div>
-    );
+    const partyId = localStorage.getItem('currentPartyId');
+    if (!partyId) {
+      setError('No se ha encontrado una party activa');
+      return;
+    }
+    fetch(`${API_BASE_URL}flights/?party_id=${partyId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Error al obtener vuelos');
+        return res.json();
+      })
+      .then((data) => setFlightData(data))
+      .catch((err) => setError(err.message));
+  }, []);
+  if (error) {
+    return <p className="text-red-600">{error}</p>;
   }
-
-  if (!resultado) {
-    return (
-      <div className="menu">
-        <BackButton />
-        <p>No se han encontrado resultados.</p>
-      </div>
-    );
+  if (!flightData) {
+    return <p>Cargando vuelos...</p>;
   }
-
   return (
-    <div className="menu">
-      <BackButton />
-      <h2>Destino recomendado</h2>
-      <h3>🌍 {resultado.pais}</h3>
-
-      <table className="tabla-resultados">
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Más barato (€)</th>
-            <th>Más rápido (€)</th>
-            <th>Recomendado (€)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {resultado.vuelos.map((vuelo) => (
-            <tr key={vuelo.user_id}>
-              <td>{vuelo.nombre}</td>
-              <td>{vuelo.mas_barato} €</td>
-              <td>{vuelo.mas_rapido} €</td>
-              <td>{vuelo.recomendado} €</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="p-6 space-y-6">
+      <h2 className="text-xl font-bold">Resumen de vuelos</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {Object.entries(flightData).map(([type, info]) => (
+          <div key={type} className="border p-4 rounded-lg shadow-md bg-white">
+            <h3 className="text-lg font-semibold mb-2">{type.toUpperCase()}</h3>
+            <p><strong>Precio:</strong> €{info[0]}</p>
+            <p><strong>Vuelo de ida:</strong> {info[1]} • {info[2]} min • {info[3]}</p>
+            <p><strong>Vuelo de vuelta:</strong> {info[4]} • {info[5]} min • {info[6]}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default Finalizar;
+export default FinalizarViaje;
